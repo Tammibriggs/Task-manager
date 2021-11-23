@@ -1,24 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import Home from './TaskManager'
+import {useState} from 'react'
+import {StateProvider} from './StateProvider'
+import EditTask from './EditTask';
+import AddTask from './AddTask'
+import TaskItem from './TaskItem'
 
 function App() {
+  const [open, setOpen] = useState({add:false, edit:false, view:false})
+  const value = {open, setOpen}
+
+  const handleModalClose = () => {
+    setOpen({add:false, edit:false, view:false})
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StateProvider value={value}>
+      <div className='app'>
+        <Home />
+
+        {open.add &&
+          <AddTask onClose={handleModalClose} open={open.add}/>
+        }
+
+        {open.edit &&
+          <EditTask onClose={handleModalClose} open={open.edit} />
+        }
+
+        {open.view &&
+          <TaskItem onClose={handleModalClose} open={open.view} />
+        }
+
+      </div>
+    </StateProvider>
   );
 }
 
