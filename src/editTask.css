@@ -1,0 +1,48 @@
+.editTask{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+  z-index: 100;
+}
+
+.editTask input{
+  height: 40px;
+  border: unset;
+  font-size: 18px;
+  box-sizing: border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing: border-box;
+  border-bottom: 1.5px solid hsl(210, 10%, 75%);
+  padding-left: 5px;
+}
+
+.editTask input:focus{
+  outline: none;
+}
+
+.editTask button {
+  height: 40px;
+  border: none;
+  color: white;
+  background-color: hsl(210, 12%, 15%);
+}
+
+.editTask textarea {
+  height: 150px;
+  border-color: hsl(210, 10%, 75%);
+  padding: 5px;
+  font-size: 18px;
+}
+
+.editTask textarea:focus { 
+  outline: none;
+}
+
+.editTask button:hover {
+  background-color: hsl(210, 12%, 25%);
+}
+
+.editTask button:active {
+  background-color: hsl(210, 12%, 15%);
+}

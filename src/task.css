@@ -1,0 +1,117 @@
+.task{
+  width: 100%;
+  padding: 15px 20px;
+  border-left: 4px solid hsl(210, 10%, 75%);
+  background-color: white;
+  max-width: 700px;
+  margin: 0 auto;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.task--borderColor{
+  border-color: green;
+  box-shadow: 0 6px 18px -9px hsl(210, 15%, 65%);
+}
+
+.task__body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.checkbox-custom {
+  display: none;
+}
+.checkbox-custom-label {
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  margin: 5px;
+  cursor: pointer;
+}
+.checkbox-custom + .checkbox-custom-label:before {
+  content: '';
+  background: inherit;
+  border-radius: 5px;
+  border: 2px solid hsl(210, 15%, 70%);
+  display: inline-block;
+  vertical-align: middle;
+  width: 12px; 
+  height: 12px;
+  padding: 2px; 
+  margin-right: 10px;
+}
+.checkbox-custom:checked + .checkbox-custom-label:after {
+  content: "";
+  padding: 2px;
+  position: absolute;
+  width: 2px;
+  height: 6px;
+  border: solid green;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+  top: 2px; left: 5px;
+}
+
+.task__body p{
+  margin: 10px 0 0 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical; 
+}
+
+.task__buttons{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  align-items: center;
+}
+
+.task__buttons > button {
+  background-color: hsl(210, 70%, 60%);
+  padding: 5px 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  color: white;
+}
+
+.task__buttons > button:hover {
+  background-color: hsl(210, 70%, 50%);
+}
+
+.task__buttons > button:active{
+  background-color: hsl(210, 70%, 60%);
+}
+
+.task__deleteNedit button {
+  margin-right: 20px;
+  background-color: transparent;
+  border: none;
+  font-size: 16px;
+  color: hsl(210, 10%, 55%);
+}
+
+.task__editButton:hover {
+  color: hsl(210, 20%, 25%);
+}
+
+.task__editButton:active {
+  color: hsl(210, 10%, 55%);
+}
+
+.task__deleteNedit .task__deleteButton {
+  color: hsl(0, 80%, 80%);
+}
+
+.task__deleteButton:hover {
+  color: hsl(0, 70%, 70%);
+}
+
+.task__deleteButton:active {
+  color: hsl(0, 80%, 80%);
+}

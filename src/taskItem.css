@@ -1,0 +1,18 @@
+.taskItem{
+  margin-top: 20px;
+}
+
+.taskItem h2{
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.taskItem p{
+  margin-top: 10px;
+  font-size: 18px;
+  max-height: 300px;
+  line-height: 25px;
+  overflow-y: auto;
+  color: hsl(210, 20%, 25%);
+}
+
