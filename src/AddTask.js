@@ -9,14 +9,14 @@ function AddTask({onClose, open}) {
 
   const {setOpen} = useStateValue()
 
-  const [task, setTask] = useState('')
+  const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
       await addDoc(collection(db, 'tasks'), {
-        task: task,
+        title: title,
         description: description
       })
         setOpen({...open, 'add': false})
@@ -30,10 +30,10 @@ function AddTask({onClose, open}) {
       <form onSubmit={handleSubmit} className='addTask'>
         <input 
           type='text' 
-          name='task' 
-          onChange={(e) => setTask(e.target.value.toUpperCase())} 
-          value={task}
-          placeholder='Enter task'/>
+          name='title' 
+          onChange={(e) => setTitle(e.target.value.toUpperCase())} 
+          value={title}
+          placeholder='Enter title'/>
         <textarea 
           onChange={(e) => setDescription(e.target.value)}
           placeholder='Enter task decription'
