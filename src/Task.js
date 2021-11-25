@@ -3,7 +3,7 @@ import {useState} from 'react'
 import { useStateValue } from './StateProvider'
 import TaskItem from './TaskItem'
 import EditTask from './EditTask'
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc, deleteDoc} from "firebase/firestore";
 import {db} from './firebase'
 
 function Task({id, title, description, completed}) {
@@ -18,6 +18,17 @@ function Task({id, title, description, completed}) {
       await updateDoc(taskDocRef, {
         completed: checked
       })
+      console.log('hello world')
+    } catch (err) {
+      alert(err)
+    }
+  }
+
+  /* function to delete a document from firstore */ 
+  const handleDelete = async () => {
+    const taskDocRef = doc(db, 'tasks', id)
+    try{
+      await deleteDoc(taskDocRef)
       console.log('hello world')
     } catch (err) {
       alert(err)
@@ -49,7 +60,7 @@ function Task({id, title, description, completed}) {
               onClick={() => setOpen({...open, 'edit': true})}>
               Edit
             </button>
-            <button className='task__deleteButton'>Delete</button>
+            <button className='task__deleteButton' onClick={handleDelete}>Delete</button>
           </div>
           <button 
             onClick={() => setOpen({...open, view: true})}>

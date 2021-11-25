@@ -1,4 +1,5 @@
 .task{
+  width: 100%;
   padding: 15px 20px;
   border-left: 4px solid hsl(210, 10%, 75%);
   background-color: white;
@@ -7,6 +8,7 @@
   display: flex;
   gap: 20px;
   align-items: center;
+  box-sizing: border-box;
 }
 
 .task--borderColor{
@@ -17,6 +19,7 @@
 .task__body {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
 }
 
 .checkbox-custom {

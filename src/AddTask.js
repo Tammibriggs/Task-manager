@@ -18,7 +18,8 @@ function AddTask({onClose, open}) {
     try {
       await addDoc(collection(db, 'tasks'), {
         title: title,
-        description: description
+        description: description,
+        completed: false
       })
         setOpen({...open, 'add': false})
     } catch (err) {
