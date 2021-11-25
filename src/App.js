@@ -27,10 +27,6 @@ function App() {
           <EditTask onClose={handleModalClose} open={open.edit} />
         }
 
-        {open.view &&
-          <TaskItem onClose={handleModalClose} open={open.view} />
-        }
-
       </div>
     </StateProvider>
   );

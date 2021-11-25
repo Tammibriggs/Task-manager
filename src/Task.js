@@ -1,6 +1,7 @@
 import './task.css'
 import {useState} from 'react'
 import { useStateValue } from './StateProvider'
+import TaskItem from './TaskItem'
 
 function Task({id, title, description}) {
 
@@ -35,11 +36,14 @@ function Task({id, title, description}) {
             <button className='task__deleteButton'>Delete</button>
           </div>
           <button 
-            onClick={() => setOpen({...open, view:true})}>
+            onClick={() => setOpen({...open, view: true})}>
             View
           </button>
         </div>
       </div>
+      {open.view &&
+        <TaskItem onClose={() => setOpen({...open, 'view': false})} title={title} description={description} open={open.view} />
+      }
     </div>
   )
 }
