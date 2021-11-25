@@ -22,11 +22,6 @@ function App() {
         {open.add &&
           <AddTask onClose={handleModalClose} open={open.add}/>
         }
-
-        {open.edit &&
-          <EditTask onClose={handleModalClose} open={open.edit} />
-        }
-
       </div>
     </StateProvider>
   );

@@ -2,6 +2,7 @@ import './task.css'
 import {useState} from 'react'
 import { useStateValue } from './StateProvider'
 import TaskItem from './TaskItem'
+import EditTask from './EditTask'
 
 function Task({id, title, description}) {
 
@@ -42,7 +43,20 @@ function Task({id, title, description}) {
         </div>
       </div>
       {open.view &&
-        <TaskItem onClose={() => setOpen({...open, 'view': false})} title={title} description={description} open={open.view} />
+        <TaskItem 
+          onClose={() => setOpen({...open, 'view': false})} 
+          title={title} 
+          description={description} 
+          open={open.view} />
+      }
+
+      {open.edit &&
+        <EditTask 
+          onClose={() => setOpen({...open, 'edit': false})} 
+          toEditTitle={title} 
+          toEditDescription={description} 
+          open={open.edit}
+          id={id} />
       }
     </div>
   )
