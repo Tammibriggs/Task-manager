@@ -11,6 +11,7 @@
   margin-top: 10px;
   font-size: 18px;
   max-height: 300px;
+  line-height: 25px;
   overflow-y: auto;
   color: hsl(210, 20%, 25%);
 }

@@ -12,6 +12,7 @@ function AddTask({onClose, open}) {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
 
+  /* function to add new task to firestore */
   const handleSubmit = async (e) => {
     e.preventDefault()
     try {
@@ -21,7 +22,7 @@ function AddTask({onClose, open}) {
       })
         setOpen({...open, 'add': false})
     } catch (err) {
-      console.log('failed to respond', err)
+      alert(err)
     }
   }
 

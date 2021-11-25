@@ -2,9 +2,7 @@ import './App.css';
 import Home from './TaskManager'
 import {useState} from 'react'
 import {StateProvider} from './StateProvider'
-import EditTask from './EditTask';
 import AddTask from './AddTask'
-import TaskItem from './TaskItem'
 
 function App() {
   const [open, setOpen] = useState({add:false, edit:false, view:false})
@@ -22,6 +20,7 @@ function App() {
         {open.add &&
           <AddTask onClose={handleModalClose} open={open.add}/>
         }
+        
       </div>
     </StateProvider>
   );

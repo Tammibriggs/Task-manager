@@ -3,14 +3,25 @@ import {useState} from 'react'
 import { useStateValue } from './StateProvider'
 import TaskItem from './TaskItem'
 import EditTask from './EditTask'
+import { doc, updateDoc } from "firebase/firestore";
+import {db} from './firebase'
 
-function Task({id, title, description}) {
+function Task({id, title, description, completed}) {
 
-  const [checked, setChecked] = useState(false)
+  const [checked, setChecked] = useState(completed)
   const {open, setOpen} = useStateValue()
 
-  const handleCheck = () => {
-    setChecked(!checked)
+  /* function to update firestore */
+  const handleChange = async () => {
+    const taskDocRef = doc(db, 'tasks', id)
+    try{
+      await updateDoc(taskDocRef, {
+        completed: checked
+      })
+      console.log('hello world')
+    } catch (err) {
+      alert(err)
+    }
   }
 
   return (
@@ -20,9 +31,13 @@ function Task({id, title, description}) {
           id={`checkbox-${id}`} 
           className='checkbox-custom'
           name="checkbox" 
-          checked={checked} 
+          checked={checked}
+          onChange={handleChange}
           type="checkbox" />
-        <label for={`checkbox-${id}`} class="checkbox-custom-label" onClick={handleCheck} ></label>
+        <label 
+          htmlFor={`checkbox-${id}`} 
+          className="checkbox-custom-label" 
+          onClick={() => setChecked(!checked)} ></label>
       </div>
       <div className='task__body'>
         <h2>{title}</h2>

@@ -11,6 +11,7 @@ function EditTask({onClose, toEditTitle, toEditDescription, id}) {
   const [description, setDescription] = useState(toEditDescription)
   const {open, setOpen} = useStateValue()
 
+  /* function to update firestore */
   const handleUpdate = async (e) => {
     e.preventDefault()
     const taskDocRef = doc(db, 'tasks', id)
@@ -19,14 +20,11 @@ function EditTask({onClose, toEditTitle, toEditDescription, id}) {
         title: title,
         description: description
       })
-
       setOpen({...open, 'edit': false})
-
     } catch (err) {
       alert(err)
     }
     
-
   }
 
   return (
