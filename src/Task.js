@@ -21,7 +21,6 @@ function Task({id, title, description, completed}) {
       await updateDoc(taskDocRef, {
         completed: checked
       })
-      console.log('hel lo world')
     } catch (err) {
       alert(err)
     }
@@ -32,7 +31,6 @@ function Task({id, title, description, completed}) {
     const taskDocRef = doc(db, 'tasks', id)
     try{
       await deleteDoc(taskDocRef)
-      console.log('hello world')
     } catch (err) {
       alert(err)
     }

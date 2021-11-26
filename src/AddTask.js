@@ -2,7 +2,7 @@ import Modal from "./Modal"
 import {useState} from 'react'
 import './addTask.css'
 import {db} from './firebase'
-import {collection, addDoc} from 'firebase/firestore'
+import {collection, addDoc, Timestamp} from 'firebase/firestore'
 
 function AddTask({onClose, open}) {
 
@@ -16,6 +16,7 @@ function AddTask({onClose, open}) {
       await addDoc(collection(db, 'tasks'), {
         title: title,
         description: description,
+        created: Timestamp.now(),
         completed: false
       })
       onClose()
@@ -36,7 +37,7 @@ function AddTask({onClose, open}) {
         <textarea 
           onChange={(e) => setDescription(e.target.value)}
           placeholder='Enter task decription'
-          >{description}</textarea>
+          value={description}></textarea>
         <button type='submit'>Done</button>
       </form> 
     </Modal>
