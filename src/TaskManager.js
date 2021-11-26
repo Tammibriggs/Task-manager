@@ -1,13 +1,13 @@
 import './taskManager.css'
 import Task from './Task'
-import {useStateValue} from './StateProvider'
 import {useState, useEffect} from 'react'
 import {collection, onSnapshot} from "firebase/firestore"
 import {db} from './firebase'
+import AddTask from './AddTask'
 
 function TaskManager() {
 
-  const {open, setOpen} = useStateValue()
+  const [openAddModal, setOpenAddModal] = useState(false)
   const [tasks, setTasks] = useState([])
 
   /* function to get all tasks from firestore in realtime */ 
@@ -26,7 +26,7 @@ function TaskManager() {
       <header>Task Manager</header>
       <div className='taskManager__container'>
         <button 
-          onClick={() => setOpen({...open, 'add':true})}>
+          onClick={() => setOpenAddModal(true)}>
           Add task +
         </button>
         <div className='taskManager__tasks'>
@@ -40,9 +40,14 @@ function TaskManager() {
               description={task.data.description}
             />
           ))}
-          
+
         </div>
       </div>
+
+      {openAddModal &&
+        <AddTask onClose={() => setOpenAddModal(false)} open={openAddModal}/>
+      }
+
     </div>
   )
 }

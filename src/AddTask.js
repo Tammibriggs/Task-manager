@@ -3,11 +3,8 @@ import {useState} from 'react'
 import './addTask.css'
 import {db} from './firebase'
 import {collection, addDoc} from 'firebase/firestore'
-import {useStateValue} from './StateProvider.js'
 
 function AddTask({onClose, open}) {
-
-  const {setOpen} = useStateValue()
 
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
@@ -21,7 +18,7 @@ function AddTask({onClose, open}) {
         description: description,
         completed: false
       })
-        setOpen({...open, 'add': false})
+      onClose()
     } catch (err) {
       alert(err)
     }

@@ -1,6 +1,5 @@
 import './task.css'
 import {useState} from 'react'
-import { useStateValue } from './StateProvider'
 import TaskItem from './TaskItem'
 import EditTask from './EditTask'
 import { doc, updateDoc, deleteDoc} from "firebase/firestore";
@@ -9,7 +8,11 @@ import {db} from './firebase'
 function Task({id, title, description, completed}) {
 
   const [checked, setChecked] = useState(completed)
-  const {open, setOpen} = useStateValue()
+  const [open, setOpen] = useState({edit:false, view:false})
+
+  const handleClose = () => {
+    setOpen({edit:false, view:false})
+  }
 
   /* function to update firestore */
   const handleChange = async () => {
@@ -18,7 +21,7 @@ function Task({id, title, description, completed}) {
       await updateDoc(taskDocRef, {
         completed: checked
       })
-      console.log('hello world')
+      console.log('hel lo world')
     } catch (err) {
       alert(err)
     }
@@ -57,7 +60,7 @@ function Task({id, title, description, completed}) {
           <div className='task__deleteNedit'>
             <button 
               className='task__editButton' 
-              onClick={() => setOpen({...open, 'edit': true})}>
+              onClick={() => setOpen({...open, edit : true})}>
               Edit
             </button>
             <button className='task__deleteButton' onClick={handleDelete}>Delete</button>
@@ -68,9 +71,10 @@ function Task({id, title, description, completed}) {
           </button>
         </div>
       </div>
+
       {open.view &&
         <TaskItem 
-          onClose={() => setOpen({...open, 'view': false})} 
+          onClose={handleClose} 
           title={title} 
           description={description} 
           open={open.view} />
@@ -78,12 +82,13 @@ function Task({id, title, description, completed}) {
 
       {open.edit &&
         <EditTask 
-          onClose={() => setOpen({...open, 'edit': false})} 
+          onClose={handleClose} 
           toEditTitle={title} 
           toEditDescription={description} 
           open={open.edit}
           id={id} />
       }
+
     </div>
   )
 }

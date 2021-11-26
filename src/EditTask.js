@@ -3,13 +3,11 @@ import {useState} from 'react'
 import './editTask.css'
 import { doc, updateDoc } from "firebase/firestore";
 import {db} from './firebase'
-import {useStateValue} from './StateProvider'
 
-function EditTask({onClose, toEditTitle, toEditDescription, id}) {
+function EditTask({open, onClose, toEditTitle, toEditDescription, id}) {
 
   const [title, setTitle] = useState(toEditTitle)
   const [description, setDescription] = useState(toEditDescription)
-  const {open, setOpen} = useStateValue()
 
   /* function to update firestore */
   const handleUpdate = async (e) => {
@@ -20,7 +18,7 @@ function EditTask({onClose, toEditTitle, toEditDescription, id}) {
         title: title,
         description: description
       })
-      setOpen({...open, 'edit': false})
+      onClose()
     } catch (err) {
       alert(err)
     }
