@@ -12,7 +12,7 @@ function AddTask({onClose, open}) {
 
   return (
     <Modal modalLable='Add Task' onClose={onClose} open={open}>
-      <form className='addTask'>
+      <form className='addTask' name='addTask'>
         <input 
           type='text' 
           name='title' 
@@ -22,7 +22,7 @@ function AddTask({onClose, open}) {
         <textarea 
           onChange={(e) => setDescription(e.target.value)}
           placeholder='Enter task decription'
-          >{description}</textarea>
+          value={description}></textarea>
         <button type='submit'>Done</button>
       </form> 
     </Modal>

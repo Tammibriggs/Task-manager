@@ -33,6 +33,7 @@
   border-color: hsl(210, 10%, 75%);
   padding: 5px;
   font-size: 18px;
+  line-height: 25px;
 }
 
 .editTask textarea:focus { 

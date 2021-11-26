@@ -1,25 +1,23 @@
 import Modal from "./Modal"
 import {useState} from 'react'
 import './editTask.css'
-import {useStateValue} from './StateProvider'
 
-function EditTask({onClose, toEditTitle, toEditDescription}) {
+function EditTask({open, onClose, toEditTitle, toEditDescription, id}) {
 
   const [title, setTitle] = useState(toEditTitle)
   const [description, setDescription] = useState(toEditDescription)
-  const {open} = useStateValue()
 
-  /* function to update firestore */
+  /* function to update document in firestore */
 
   return (
     <Modal modalLable='Edit Task' onClose={onClose} open={open}>
-      <form className='editTask'>
+      <form className='editTask' name='updateTask'>
         <input 
           type='text' 
           name='title' 
           onChange={(e) => setTitle(e.target.value.toUpperCase())} 
           value={title}/>
-        <textarea onChange={(e) => setDescription(e.target.value)}>{description}</textarea>
+        <textarea onChange={(e) => setDescription(e.target.value)} value={description}></textarea>
         <button type='submit'>Edit</button>
       </form> 
     </Modal>

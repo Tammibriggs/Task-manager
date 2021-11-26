@@ -1,15 +1,18 @@
 import './task.css'
 import {useState} from 'react'
-import { useStateValue } from './StateProvider'
 import TaskItem from './TaskItem'
 import EditTask from './EditTask'
 
-function Task({id, title, description}) {
+function Task({id, title, description, completed}) {
 
-  const [checked, setChecked] = useState(false)
-  const {open, setOpen} = useStateValue()
+  const [checked, setChecked] = useState(completed)
+  const [open, setOpen] = useState({edit:false, view:false})
 
-   /* function to update firestore */
+  const handleClose = () => {
+    setOpen({edit:false, view:false})
+  }
+
+   /* function to update document in firestore */
 
    /* function to delete a document from firstore */ 
 
@@ -34,7 +37,7 @@ function Task({id, title, description}) {
           <div className='task__deleteNedit'>
             <button 
               className='task__editButton' 
-              onClick={() => setOpen({...open, 'edit': true})}>
+              onClick={() => setOpen({...open, edit: true})}>
               Edit
             </button>
             <button className='task__deleteButton'>Delete</button>
@@ -48,7 +51,7 @@ function Task({id, title, description}) {
 
       {open.view &&
         <TaskItem 
-          onClose={() => setOpen({...open, 'view': false})} 
+          onClose={handleClose} 
           title={title} 
           description={description} 
           open={open.view} />
@@ -56,7 +59,7 @@ function Task({id, title, description}) {
 
       {open.edit &&
         <EditTask 
-          onClose={() => setOpen({...open, 'edit': false})} 
+          onClose={handleClose} 
           toEditTitle={title} 
           toEditDescription={description} 
           open={open.edit}
