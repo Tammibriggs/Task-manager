@@ -16,8 +16,8 @@ function AddTask({onClose, open}) {
       await addDoc(collection(db, 'tasks'), {
         title: title,
         description: description,
-        created: Timestamp.now(),
-        completed: false
+        completed: false,
+        created: Timestamp.now()
       })
       onClose()
     } catch (err) {
@@ -27,7 +27,7 @@ function AddTask({onClose, open}) {
 
   return (
     <Modal modalLable='Add Task' onClose={onClose} open={open}>
-      <form onSubmit={handleSubmit} className='addTask'>
+      <form onSubmit={handleSubmit} className='addTask' name='addTask'>
         <input 
           type='text' 
           name='title' 
